@@ -62,7 +62,6 @@ export default {
     return {
       data,
       editingKey: '',
-      cols:[],
     };
   },
   props: {
@@ -82,6 +81,7 @@ export default {
         target[column] = value;
         this.data = newData;
       }
+      console.log('111');
     },
     edit(key) {
       const newData = [...this.data];
