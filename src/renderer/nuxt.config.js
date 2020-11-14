@@ -16,7 +16,7 @@ module.exports = {
         }
       }
     },
-  mode: 'spa', // or 'universal'
+  // mode: 'spa', // or 'universal'
   head: {
     title: 'electron-nuxt',
     meta: [{ charset: "utf-8" }]

@@ -1,11 +1,10 @@
 <template>
-  <a-table :columns="cols" :data-source="data" bordered  size="middle">
-    <a slot="action" slot-scope="text" href="javascript:;">Delete</a>
+  <a-table :columns="cols" :data-source="data" bordered>
     <p slot="expandedRowRender" slot-scope="record" style="margin: 0">
       {{ record.description }}
     </p>
     <template
-      v-for="col in cols"
+      v-for="col in cols.map((item) => item.dataIndex).slice(0,-1)"
       :slot="col"
       slot-scope="text, record, index"
     >
@@ -44,7 +43,31 @@
   </a-table>
 </template>
 <script>
-
+// const columns = [
+//   {
+//     title: 'name',
+//     dataIndex: 'name',
+//     width: '25%',
+//     scopedSlots: { customRender: 'name' },
+//   },
+//   {
+//     title: 'age',
+//     dataIndex: 'age',
+//     width: '15%',
+//     scopedSlots: { customRender: 'age' },
+//   },
+//   {
+//     title: 'address',
+//     dataIndex: 'address',
+//     width: '40%',
+//     scopedSlots: { customRender: 'address' },
+//   },
+//   {
+//     title: 'operation',
+//     dataIndex: 'operation',
+//     scopedSlots: { customRender: 'operation' },
+//   },
+// ];
 
 const data = [];
 for (let i = 0; i < 100; i++) {
@@ -53,7 +76,7 @@ for (let i = 0; i < 100; i++) {
     name: `Edrward ${i}`,
     age: 32,
     address: `London Park no. ${i}`,
-    description: 'ya obmenyal sobaku na deda'
+    description: 'ya obmenyal sobaku na deda',
   });
 }
 export default {
@@ -65,9 +88,7 @@ export default {
     };
   },
   props: {
-      cols:{
-          type: Array,
-      }
+    cols:Array
   },
   methods: {
     onDelete(key) {
@@ -81,13 +102,13 @@ export default {
         target[column] = value;
         this.data = newData;
       }
-      console.log('111');
     },
     edit(key) {
       const newData = [...this.data];
       const target = newData.filter(item => key === item.key)[0];
       this.editingKey = key;
       if (target) {
+        console.log(this.cols)
         target.editable = true;
         this.data = newData;
       }
