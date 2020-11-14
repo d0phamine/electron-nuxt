@@ -5,7 +5,7 @@
                 <div class="midpanel " :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
                     <a-tabs default-active-key="1" @change="callback">
                     <a-tab-pane key="1" tab="Комиссия по категорированию">
-                        <a-button type="primary" icon="edit" :size="size" class="addkomisiya">
+                        <a-button type="primary" icon="edit"  class="addkomisiya">
                             Добавить комиссию
                         </a-button>
                         <TablePlus  :cols="cols"/>
@@ -38,7 +38,7 @@
                         </a-card>
                 </div>
                 <div class="addrukovod">
-                    <a-button type="primary" icon="edit" :size="size">
+                    <a-button type="primary" icon="edit">
                             Добавить руководителя
                     </a-button>
                 </div>
@@ -48,17 +48,8 @@
 </template>
 
 <script>
-import TablePlus from '@/components/TablePlus'
-
-
-
-
 export default {
-  components :{
-    TablePlus  
-  },
-  data () {
-    return {
+  data: () => ( {
       externalContent: '',
       collapsed: false,
       items: [
@@ -89,8 +80,7 @@ export default {
             scopedSlots: { customRender: 'operation' },
         },
     ],
-    }
-  },
+  }),
   methods: {
     openURL (url) {
       remote.shell.openExternal(url)

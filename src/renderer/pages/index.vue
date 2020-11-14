@@ -6,20 +6,12 @@
 
 <script>
 import { remote } from 'electron'
-import TableEdit from '@/components/TableEdit'
-
-
 
 export default {
-  components: {
-    TableEdit,
-  },
-  data () {
-    return {
-      externalContent: '',
-      collapsed: false,
-    }
-  },
+  data:() => ({
+    externalContent: '',
+    collapsed: false,
+  }),
   methods: {
     openURL (url) {
       remote.shell.openExternal(url)

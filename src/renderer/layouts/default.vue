@@ -45,11 +45,9 @@
 
 <script>
 export default {
-  data() {
-    return {
+  data:() => ({
       collapsed: true,
-    };
-  },
+  }),
 }
 </script>
 
