@@ -5,13 +5,12 @@
                 <div class="midpanel " :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
                     <a-tabs default-active-key="1" @change="callback">
                     <a-tab-pane key="1" tab="Комиссия по категорированию">
-                        <a-button type="primary" icon="edit"  class="addkomisiya">
-                            Добавить комиссию
-                        </a-button>
+                        <AddModal v-bind:komissya="true"/>
                         <TablePlus  :cols="cols"/>
                     </a-tab-pane>
                     <a-tab-pane key="2" tab="Сотрудники комисиии" force-render>
-                        Content of Tab Pane 2
+                        <AddModal v-bind:sotrudnik="true"/>
+                        <TableNoPlus  :cols="cols"/>
                     </a-tab-pane>
                 </a-tabs>
                 </div>
@@ -38,9 +37,7 @@
                         </a-card>
                 </div>
                 <div class="addrukovod">
-                    <a-button type="primary" icon="edit">
-                            Добавить руководителя
-                    </a-button>
+                    <AddModal v-bind:rukovod="true"/>
                 </div>
             </a-col>
         </a-row>
@@ -57,19 +54,19 @@ export default {
       ],
       cols: [
         {
-            title: 'имя',
+            title: 'название',
             dataIndex: 'name',
             width: '25%',
             scopedSlots: { customRender: 'name' },
         },
         {
-            title: 'возраст',
+            title: 'номер',
             dataIndex: 'age',
             width: '15%',
             scopedSlots: { customRender: 'age' },
         },
         {
-            title: 'адрес',
+            title: 'дата',
             dataIndex: 'address',
             width: '40%',
             scopedSlots: { customRender: 'address' },
